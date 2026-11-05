@@ -325,6 +325,13 @@ PRODUCT_SOONG_NAMESPACES += \
     hardware/qcom-caf/common/libqti-perfd-client \
     vendor/qcom/opensource/usb/etc
 
+# Conditionally inherit Viper4AndroidFX & disable audioFX.
+ifneq ("$(wildcard packages/apps/ViPER4AndroidFX/config.mk)", "")
+$(warning Enabling Viper4Android audio effect.)
+$(call inherit-product, packages/apps/ViPER4AndroidFX/config.mk)
+TARGET_EXCLUDES_AUDIOFX := true
+endif
+
 # Storage
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 

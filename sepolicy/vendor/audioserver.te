@@ -1,0 +1,10 @@
+# ViPER4Android FX: see packages/apps/ViPER4AndroidFX/README.md
+
+# audio properties (also granted by device/qcom/sepolicy_vndr legacy-um; kept for parity)
+get_prop(audioserver, vendor_audio_prop)
+
+# allow audioserver to access V4A's unlabeled runtime files
+allow audioserver unlabeled:file { read write open getattr };
+
+# allow the audio HAL to map executable memory used by libv4a_re
+allow hal_audio_default hal_audio_default:process { execmem };
